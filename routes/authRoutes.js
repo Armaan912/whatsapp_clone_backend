@@ -9,6 +9,4 @@ router.post("/login", login);
 router.get("/me", authMiddleware, me);
 router.post("/logout", authMiddleware, logout);
 
-
-
 export default router;

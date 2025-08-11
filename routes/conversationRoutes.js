@@ -4,10 +4,7 @@ import { getConversations, getOrCreateConversation } from "../controllers/conver
 
 const router = express.Router();
 
-// Get all conversations for the authenticated user
 router.get("/", authMiddleware, getConversations);
-
-// Create or get conversation
 router.post("/", authMiddleware, getOrCreateConversation);
 
 export default router;

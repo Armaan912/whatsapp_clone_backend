@@ -71,6 +71,7 @@ const cleanupStaleConnections = async () => {
       }
     }
   } catch (error) {
+    // Silent error handling
   }
 };
 
@@ -131,6 +132,7 @@ io.on("connection", (socket) => {
         
         disconnectAllUserSessions(userId);
       } catch (error) {
+        // Silent error handling
       }
     }
   });
@@ -152,6 +154,7 @@ io.on("connection", (socket) => {
         });
       }
     } catch (error) {
+      // Silent error handling
     }
   });
 
@@ -210,6 +213,7 @@ io.on("connection", (socket) => {
         }
       }
     } catch (error) {
+      // Silent error handling
     }
   });
 
@@ -256,6 +260,7 @@ io.on("connection", (socket) => {
       });
       
     } catch (error) {
+      // Silent error handling
     }
   });
 
@@ -279,6 +284,7 @@ io.on("connection", (socket) => {
         socketUsers.delete(socket.id);
       }
     } catch (error) {
+      // Silent error handling
     }
   });
 });
@@ -309,16 +315,20 @@ app.use("/api/conversations", conversationRoutes);
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 }).on('error', (err) => {
   if (err.code === 'EADDRINUSE') {
+    console.error('Port already in use');
   }
   process.exit(1);
 });
 
 process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
   process.exit(1);
 });
 
 process.on('unhandledRejection', (err) => {
+  console.error('Unhandled Rejection:', err);
   process.exit(1);
 });

@@ -33,8 +33,6 @@ export const sendMessage = async (req, res) => {
     conversation.lastMessage = message._id;
     await conversation.save();
 
-    req.io.to(receiverId.toString()).emit("receive_message", message);
-
     if (req.io) {
       req.io.to(conversationId.toString()).emit("receive_message", message);
       req.io.to(senderId.toString()).emit("receive_message", message);

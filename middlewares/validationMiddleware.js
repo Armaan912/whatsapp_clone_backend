@@ -1,6 +1,5 @@
 import { body, validationResult } from 'express-validator';
 
-// Validation rules for user registration
 export const validateSignup = [
   body('username')
     .trim()
@@ -21,7 +20,6 @@ export const validateSignup = [
     .withMessage('Password must contain at least one lowercase letter, one uppercase letter, and one number')
 ];
 
-// Validation rules for user login
 export const validateLogin = [
   body('mobile')
     .trim()
@@ -33,7 +31,6 @@ export const validateLogin = [
     .withMessage('Password is required')
 ];
 
-// Validation rules for sending messages
 export const validateMessage = [
   body('conversationId')
     .isMongoId()
@@ -50,14 +47,12 @@ export const validateMessage = [
     .withMessage('Message text cannot exceed 1000 characters')
 ];
 
-// Validation rules for creating conversations
 export const validateConversation = [
   body('userId')
     .isMongoId()
     .withMessage('Invalid user ID')
 ];
 
-// Validation rules for updating user profile
 export const validateProfileUpdate = [
   body('username')
     .optional()
@@ -73,7 +68,6 @@ export const validateProfileUpdate = [
     .withMessage('Profile picture must be a valid URL')
 ];
 
-// Generic validation result handler
 export const handleValidationErrors = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
